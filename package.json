@@ -1,0 +1,21 @@
+{
+  "name": "vs-stun",
+  "version": "0.0.0",
+  "description": "STUN protocol implementation for NodeJS",
+  "main": "stun.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/d-vova/vs-stun.git"
+  },
+  "keywords": [
+    "stun",
+    "nat"
+  ],
+  "author": "Vladimir Darmin",
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "gitHead": "406299d3d0b8f545626b358b0d6848a60f68f26d"
+}
