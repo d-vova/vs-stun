@@ -1,5 +1,27 @@
 var message = exports.message = require('./lib/message');
 
+var response = exports.response = function response ( request, address, auth ) {
+  var request = request || null, isBuffer = request instanceof Buffer;
+
+  if ( !request ) return request;
+  if ( isBuffer ) {
+    if ( !message.check(request) ) return null;
+
+    request = message.parse(request, auth);
+
+    if ( request.type != message.TYPE.REQUEST ) return null;
+  }
+
+  var response = message.create(auth, message.TYPE.SUCCESS, null, request.transactionID);
+
+  response.xorMappedAddress(address);
+  response.messageIntegrity();
+  response.fingerprint();
+
+  return isBuffer ? response.buffer : response;
+}
+
+
 var TEST_VECTORS = [
   {
     auth: { username: 'evtj:h6vY', password: 'VOkJxbRl1RmTxUk/WvJxBt' },
@@ -43,7 +65,7 @@ if ( require.main === module ) {
   for ( var i = 0; i < TEST_VECTORS.length; i += 1 ) {
     var vector = TEST_VECTORS[i];
 
-    var msg = message.parse(vector.auth, new Buffer(vector.packet, 'hex'));
+    var msg = message.parse(new Buffer(vector.packet, 'hex'), vector.auth);
 
     console.log([ vector.auth.password, vector.packet, msg, '' ].join('\n'));
   }
