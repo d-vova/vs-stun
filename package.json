@@ -1,10 +1,11 @@
 {
   "name": "vs-stun",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "STUN protocol implementation for NodeJS",
-  "main": "stun.js",
+  "main": "vs-stun.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node vs-stun.js test",
+    "start": "node vs-stun.js"
   },
   "repository": {
     "type": "git",
