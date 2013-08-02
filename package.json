@@ -1,6 +1,6 @@
 {
   "name": "vs-stun",
-  "version": "0.0.4",
+  "version": "0.0.6",
   "description": "STUN protocol implementation for NodeJS",
   "main": "vs-stun.js",
   "scripts": {

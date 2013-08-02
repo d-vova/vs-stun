@@ -60,6 +60,11 @@ create.sharedSecretFailure = function createSharedSecretFailure ( auth ) {
 }
 
 
+var check = exports.check = function check ( data ) {
+  return Packet.parse.check(data);
+}
+
+
 var resolve = exports.resolve = function resolve ( socket, server, callback ) {
   var port = server.port, host = server.host;
   var auth = server.auth || { username: 'vs-stun' }
@@ -92,7 +97,7 @@ var resolve = exports.resolve = function resolve ( socket, server, callback ) {
   socket.send(packet.raw, 0, packet.raw.length, port, host);
 }
 
-var respond = exports.respond = function respond ( ) {
+var respond = exports.respond = function respond ( socket, data, callback ) {
 }
 
 
