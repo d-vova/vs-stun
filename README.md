@@ -88,85 +88,112 @@ Append Attributes
 #### Mapped-Address ####
 
 ```
-packet.append.mappedAddress({ address: '192.168.0.1', port: '8080', family: 'IPv4' });
+var error, address = { address: '192.168.0.1', port: '8080', family: 'IPv4' }
+
+if ( error = packet.append.mappedAddress(address) ) console.log(error);
 ```
 
 #### Username ####
 
 ```
-packet.append.username('name');
+var error, name = 'Joe';
+
+if ( error = packet.append.username(name) ) console.log(error);
 ```
 
 #### Message-Integrity ####
 
 ```
-packet.append.messageIntegrity();
+var error = null;
+
+if ( error = packet.append.messageIntegrity() ) console.log(error);
 ```
 
 #### Error-Code ####
 
 ```
-packet.append.errorCode({ code: 300, reason: 'Try Alternate' });
+var error, errorCode = { code: 300, reason: 'Try Alternate' }
+
+if ( error = packet.append.errorCode(errorCode) ) console.log(error);
 ```
 
 #### Unknown-Attributes ####
 
 ```
-packet.append.unknownAttributes([ 0x02, 0x04, 0x05 ]);
+var error, attributes = [ 0x02, 0x04, 0x05 ];
+
+if ( error = packet.append.unknownAttributes(attributes) ) console.log(error);
 ```
 
 #### Realm ####
 
 ```
-packet.append.realm('realm');
+var error, name = 'realm';
+
+if ( error = packet.append.realm(name) ) console.log(error);
 ```
 
 #### Nonce ####
 
 ```
-packet.append.nonce('nonce');
+var error, name = 'nonce';
+
+if ( error = packet.append.nonce(name) ) console.log(error);
 ```
 
 #### XOR-Mapped-Address ####
 
 ```
-packet.append.xorMappedAddress({ address: '192.168.0.1', port: '8080', family: 'IPv4' });
+var error, address = { address: '192.168.0.1', port: '8080', family: 'IPv4' }
+
+if ( error = packet.append.xorMappedAddress(address) ) console.log(error);
 ```
 
 #### Priority ####
 
 ```
-packet.append.priority(12345);
+var error, level = 12345;
+if ( error = packet.append.priority(level) ) console.log(error);
 ```
 
 #### Use-Candidate ####
 
 ```
-packet.append.useCandidate();
+var error = null;
+
+if ( error = packet.append.useCandidate() ) console.log(error);
 ```
 
 #### Software ####
 
 ```
-packet.append.software('soft');
+var error, name = 'soft';
+
+if ( error = packet.append.software('soft') ) console.log(error);
 ```
 
 #### Fingerprint ####
 
 ```
-packet.append.fingerprint();
+var error = null;
+
+if ( error = packet.append.fingerprint() ) console.log(error);
 ```
 
 #### Ice-Controlled ####
 
 ```
-packet.append.iceControlled('0011223344556677');
+var error, tieBreaker = '08192a3b4c5e6d7f';
+
+if ( error = packet.append.iceControlled(tieBreaker) ) console.log(error);
 ```
 
 #### Ice-Controlling ####
 
 ```
-packet.append.iceControlling('0011223344556677');
+var error, tieBreaker = '08192a3b4c5e6d7f';
+
+if ( error = packet.append.iceControlling(tieBreaker) ) console.log(error);
 ```
 
 
