@@ -85,78 +85,16 @@ Append Attributes
 -----------------
 
 
-#### Mapped-Address ####
+### RFC 5245 ###
 
-```
-var error, address = { address: '192.168.0.1', port: '8080', family: 'IPv4' }
-
-if ( error = packet.append.mappedAddress(address) ) console.log(error);
-```
-
-#### Username ####
-
-```
-var error, name = 'Joe';
-
-if ( error = packet.append.username(name) ) console.log(error);
-```
-
-#### Message-Integrity ####
-
-```
-var error = null;
-
-if ( error = packet.append.messageIntegrity() ) console.log(error);
-```
-
-#### Error-Code ####
-
-```
-var error, errorCode = { code: 300, reason: 'Try Alternate' }
-
-if ( error = packet.append.errorCode(errorCode) ) console.log(error);
-```
-
-#### Unknown-Attributes ####
-
-```
-var error, attributes = [ 0x02, 0x04, 0x05 ];
-
-if ( error = packet.append.unknownAttributes(attributes) ) console.log(error);
-```
-
-#### Realm ####
-
-```
-var error, name = 'realm';
-
-if ( error = packet.append.realm(name) ) console.log(error);
-```
-
-#### Nonce ####
-
-```
-var error, name = 'nonce';
-
-if ( error = packet.append.nonce(name) ) console.log(error);
-```
-
-#### XOR-Mapped-Address ####
-
-```
-var error, address = { address: '192.168.0.1', port: '8080', family: 'IPv4' }
-
-if ( error = packet.append.xorMappedAddress(address) ) console.log(error);
-```
-
-#### Priority ####
+##### Priority #####
 
 ```
 var error, level = 12345;
 if ( error = packet.append.priority(level) ) console.log(error);
 ```
 
-#### Use-Candidate ####
+##### Use-Candidate #####
 
 ```
 var error = null;
@@ -164,23 +102,7 @@ var error = null;
 if ( error = packet.append.useCandidate() ) console.log(error);
 ```
 
-#### Software ####
-
-```
-var error, name = 'soft';
-
-if ( error = packet.append.software('soft') ) console.log(error);
-```
-
-#### Fingerprint ####
-
-```
-var error = null;
-
-if ( error = packet.append.fingerprint() ) console.log(error);
-```
-
-#### Ice-Controlled ####
+##### Ice-Controlled #####
 
 ```
 var error, tieBreaker = '08192a3b4c5e6d7f';
@@ -188,13 +110,99 @@ var error, tieBreaker = '08192a3b4c5e6d7f';
 if ( error = packet.append.iceControlled(tieBreaker) ) console.log(error);
 ```
 
-#### Ice-Controlling ####
+##### Ice-Controlling #####
 
 ```
 var error, tieBreaker = '08192a3b4c5e6d7f';
 
 if ( error = packet.append.iceControlling(tieBreaker) ) console.log(error);
 ```
+
+
+### RFC 5389 ###
+
+##### Mapped-Address #####
+
+```
+var error, address = { address: '192.168.0.1', port: '8080', family: 'IPv4' }
+
+if ( error = packet.append.mappedAddress(address) ) console.log(error);
+```
+
+##### XOR-Mapped-Address #####
+
+```
+var error, address = { address: '192.168.0.1', port: '8080', family: 'IPv4' }
+
+if ( error = packet.append.xorMappedAddress(address) ) console.log(error);
+```
+
+##### Username #####
+
+```
+var error, name = 'Joe';
+
+if ( error = packet.append.username(name) ) console.log(error);
+```
+
+##### Message-Integrity #####
+
+```
+var error = null;
+
+if ( error = packet.append.messageIntegrity() ) console.log(error);
+```
+
+##### Fingerprint #####
+
+```
+var error = null;
+
+if ( error = packet.append.fingerprint() ) console.log(error);
+```
+
+##### Error-Code #####
+
+```
+var error, errorCode = { code: 300, reason: 'Try Alternate' }
+
+if ( error = packet.append.errorCode(errorCode) ) console.log(error);
+```
+
+##### Realm #####
+
+```
+var error, name = 'realm';
+
+if ( error = packet.append.realm(name) ) console.log(error);
+```
+
+##### Nonce #####
+
+```
+var error, name = 'nonce';
+
+if ( error = packet.append.nonce(name) ) console.log(error);
+```
+
+##### Unknown-Attributes #####
+
+```
+var error, attributes = [ 0x02, 0x04, 0x05 ];
+
+if ( error = packet.append.unknownAttributes(attributes) ) console.log(error);
+```
+
+##### Software #####
+
+```
+var error, name = 'soft';
+
+if ( error = packet.append.software('soft') ) console.log(error);
+```
+
+
+
 
 
 License
