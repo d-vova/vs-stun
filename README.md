@@ -44,37 +44,37 @@ var packet = stun.create({ username: 'name', password: 'pswd' });
 ```
 
 
-#### Binding Request ####
+##### Binding Request #####
 
 ```
 var packet = stun.create.bindingRequest({ username: 'name', password: 'pswd' });
 ```
 
-#### Binding Response ####
+##### Binding Response #####
 
 ```
 var packet = stun.create.bindingSuccess({ username: 'name', password: 'pswd' });
 ```
 
-#### Binding Error ####
+##### Binding Error #####
 
 ```
 var packet = stun.create.bindingFailure({ username: 'name', password: 'pswd' });
 ```
 
-#### Shared Secret Request ####
+##### Shared Secret Request #####
 
 ```
 var packet = stun.create.sharedSecretRequest({ username: 'name', password: 'pswd' });
 ```
 
-#### Shared Secret Response ####
+##### Shared Secret Response #####
 
 ```
 var packet = stun.create.sharedSecretSuccess({ username: 'name', password: 'pswd' });
 ```
 
-#### Shared Secret Error ####
+##### Shared Secret Error #####
 
 ```
 var packet = stun.create.sharedSecretFailure({ username: 'name', password: 'pswd' });
@@ -85,7 +85,7 @@ Append Attributes
 -----------------
 
 
-### RFC 5245 ###
+### RFC 5245 (ICE) ###
 
 ##### Priority #####
 
@@ -119,12 +119,12 @@ if ( error = packet.append.iceControlling(tieBreaker) ) console.log(error);
 ```
 
 
-### RFC 5389 ###
+### RFC 5389 (STUN) ###
 
 ##### Mapped-Address #####
 
 ```
-var error, address = { address: '192.168.0.1', port: '8080', family: 'IPv4' }
+var error, address = { address: '192.168.0.1', port: 8080, family: 'IPv4' }
 
 if ( error = packet.append.mappedAddress(address) ) console.log(error);
 ```
@@ -132,7 +132,7 @@ if ( error = packet.append.mappedAddress(address) ) console.log(error);
 ##### XOR-Mapped-Address #####
 
 ```
-var error, address = { address: '192.168.0.1', port: '8080', family: 'IPv4' }
+var error, address = { address: '192.168.0.1', port: 8080, family: 'IPv4' }
 
 if ( error = packet.append.xorMappedAddress(address) ) console.log(error);
 ```
@@ -201,8 +201,56 @@ var error, name = 'soft';
 if ( error = packet.append.software('soft') ) console.log(error);
 ```
 
+##### Alternate-Server #####
+
+```
+var error, address = { address: '192.168.0.1', port: 8080, family: 'IPv4' }
+
+if ( error = packet.append.alternateServer(address) ) console.log(error);
+```
 
 
+### RFC 5780 (NAT) ###
+
+##### Change-Request #####
+
+```
+var error, flags = { host: true, port: true }
+
+if ( error = packet.append.changeRequest(flags) ) console.log(error);
+```
+
+##### Response-Origin #####
+
+```
+var error, address = { address: '192.168.0.1', port: 8080, family: 'IPv4' }
+
+if ( error = packet.append.responseOrigin(address) ) console.log(error);
+```
+
+##### Other-Address #####
+
+```
+var error, address = { address: '192.168.0.1', port: 8080, family: 'IPv4' }
+
+if ( error = packet.append.otherAddress(address) ) console.log(error);
+```
+
+##### Response-Port #####
+
+```
+var error, port = 8080;
+
+if ( error = packet.append.responsePort(port) ) console.log(error);
+```
+
+##### Padding #####
+
+```
+var error, padding = 'some string for padding....';
+
+if ( error = packet.append.padding(padding) ) console.log(error);
+```
 
 
 License
