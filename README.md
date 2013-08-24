@@ -15,24 +15,60 @@ npm install vs-stun
 Quick Start
 -----------
 
-Discover host and port of a datagram socket:
+Create a datagram socket, discover its host, port, and topology:
 
 ```
-var dgram = require('dgram');
 var stun = require('vs-stun');
 
-var socket = dgram.createSocket('udp4');
-var server = { host: 'stun.l.google.com', port: 19302 };
+var socket, option = {
+  primary:        { host: 'stun1.l.google.com', port: 19302 },
+  secondary:      { host: 'stun2.l.google.com', port: 19302 },
+  retransmission: { count: 7, timeout: 500 }
+}
 
-socket.on('listening', function ( ) {
-  stun.resolve(socket, server, function ( error, value ) {
-    console.log(error || value);
-
+var callback = function callback ( error, value ) {
+  if ( !error ) {
+    socket = value;
+    
+    var host = socket.stun.host;
+    var port = socket.stun.port;
+    var type = socket.stun.type;
+    
+    console.log('STUN: ' + type + ' => ' + host + ':' + port);
+    
     socket.close();
-  });
-});
+  }
+  else console.log('Something went wrong: ' + error);
+}
 
-socket.bind();
+stun.connect(option, callback);
+```
+
+Or discover host, port, and topology of an existing socket:
+
+```
+var stun = require('vs-stun');
+
+// socket is created and opened here...
+
+var option = {
+  primary:        { host: 'stun1.l.google.com', port: 19302 },
+  secondary:      { host: 'stun2.l.google.com', port: 19302 },
+  retransmission: { count: 7, timeout: 500 }
+}
+
+var callback = function callback ( error, value ) {
+  if ( !error ) {
+    var host = value.host;
+    var port = value.port;
+    var type = value.type;
+    
+    console.log('STUN: ' + type + ' => ' + host + ':' + port);
+  }
+  else console.log('Something went wrong: ' + error);
+}
+
+stun.resolve(socket, option, callback);
 ```
 
 
