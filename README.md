@@ -84,6 +84,48 @@ var packet = stun.create.sharedSecretFailure({ username: 'name', password: 'pswd
 Append Attributes
 -----------------
 
+### RFC 3489 (STUN) ###
+
+##### Response-Address #####
+
+```
+var error, address = { address: '192.168.0.1', port: '8080', family: 'IPv4' }
+
+if ( error = packet.append.responseAddress(address) ) console.log(error);
+```
+
+##### Changed-Address #####
+
+```
+var error, address = { address: '192.168.0.1', port: '8080', family: 'IPv4' }
+
+if ( error = packet.append.changedAddress(address) ) console.log(error);
+```
+
+##### Source-Address #####
+
+```
+var error, address = { address: '192.168.0.1', port: '8080', family: 'IPv4' }
+
+if ( error = packet.append.sourceAddress(address) ) console.log(error);
+```
+
+##### Password #####
+
+```
+var error, password = "secret";
+
+if ( error = packet.append.password(password) ) console.log(error);
+```
+
+##### Reflected-From #####
+
+```
+var error, address = { address: '192.168.0.1', port: '8080', family: 'IPv4' }
+
+if ( error = packet.append.reflectedFrom(address) ) console.log(error);
+```
+
 
 ### RFC 5245 (ICE) ###
 
