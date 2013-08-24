@@ -89,7 +89,7 @@ Append Attributes
 ##### Response-Address #####
 
 ```
-var error, address = { address: '192.168.0.1', port: '8080', family: 'IPv4' }
+var error, address = { host: '192.168.0.1', port: 8080, family: 'IPv4' }
 
 if ( error = packet.append.responseAddress(address) ) console.log(error);
 ```
@@ -97,7 +97,7 @@ if ( error = packet.append.responseAddress(address) ) console.log(error);
 ##### Changed-Address #####
 
 ```
-var error, address = { address: '192.168.0.1', port: '8080', family: 'IPv4' }
+var error, address = { host: '192.168.0.1', port: 8080, family: 'IPv4' }
 
 if ( error = packet.append.changedAddress(address) ) console.log(error);
 ```
@@ -105,7 +105,7 @@ if ( error = packet.append.changedAddress(address) ) console.log(error);
 ##### Source-Address #####
 
 ```
-var error, address = { address: '192.168.0.1', port: '8080', family: 'IPv4' }
+var error, address = { host: '192.168.0.1', port: 8080, family: 'IPv4' }
 
 if ( error = packet.append.sourceAddress(address) ) console.log(error);
 ```
@@ -121,7 +121,7 @@ if ( error = packet.append.password(password) ) console.log(error);
 ##### Reflected-From #####
 
 ```
-var error, address = { address: '192.168.0.1', port: '8080', family: 'IPv4' }
+var error, address = { host: '192.168.0.1', port: 8080, family: 'IPv4' }
 
 if ( error = packet.append.reflectedFrom(address) ) console.log(error);
 ```
@@ -133,6 +133,7 @@ if ( error = packet.append.reflectedFrom(address) ) console.log(error);
 
 ```
 var error, level = 12345;
+
 if ( error = packet.append.priority(level) ) console.log(error);
 ```
 
@@ -166,7 +167,7 @@ if ( error = packet.append.iceControlling(tieBreaker) ) console.log(error);
 ##### Mapped-Address #####
 
 ```
-var error, address = { address: '192.168.0.1', port: 8080, family: 'IPv4' }
+var error, address = { host: '192.168.0.1', port: 8080, family: 'IPv4' }
 
 if ( error = packet.append.mappedAddress(address) ) console.log(error);
 ```
@@ -174,7 +175,7 @@ if ( error = packet.append.mappedAddress(address) ) console.log(error);
 ##### XOR-Mapped-Address #####
 
 ```
-var error, address = { address: '192.168.0.1', port: 8080, family: 'IPv4' }
+var error, address = { host: '192.168.0.1', port: 8080, family: 'IPv4' }
 
 if ( error = packet.append.xorMappedAddress(address) ) console.log(error);
 ```
@@ -246,7 +247,7 @@ if ( error = packet.append.software('soft') ) console.log(error);
 ##### Alternate-Server #####
 
 ```
-var error, address = { address: '192.168.0.1', port: 8080, family: 'IPv4' }
+var error, address = { host: '192.168.0.1', port: 8080, family: 'IPv4' }
 
 if ( error = packet.append.alternateServer(address) ) console.log(error);
 ```
@@ -265,7 +266,7 @@ if ( error = packet.append.changeRequest(flags) ) console.log(error);
 ##### Response-Origin #####
 
 ```
-var error, address = { address: '192.168.0.1', port: 8080, family: 'IPv4' }
+var error, address = { host: '192.168.0.1', port: 8080, family: 'IPv4' }
 
 if ( error = packet.append.responseOrigin(address) ) console.log(error);
 ```
@@ -273,7 +274,7 @@ if ( error = packet.append.responseOrigin(address) ) console.log(error);
 ##### Other-Address #####
 
 ```
-var error, address = { address: '192.168.0.1', port: 8080, family: 'IPv4' }
+var error, address = { host: '192.168.0.1', port: 8080, family: 'IPv4' }
 
 if ( error = packet.append.otherAddress(address) ) console.log(error);
 ```
