@@ -296,6 +296,19 @@ if ( error = packet.append.padding(padding) ) console.log(error);
 ```
 
 
+Error Codes and Reasons
+-----------------------
+
+### RFC 5389 (STUN) ###
+
+  - `300` - Try Alternate
+  - `400` - Bad Request
+  - `401` - Unauthorized
+  - `420` - Unknown Attribute
+  - `438` - Stale Nonce
+  - `500` - Server Error
+
+
 License
 -------
 
