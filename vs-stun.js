@@ -1,6 +1,7 @@
-var udp = require('dgram');
+var dgram = require('dgram');
 
 var util = require('./lib/util');
+var client = require('./lib/client');
 var Packet = require('./lib/Packet');
 
 var parse = exports.parse = function parse ( data ) {
@@ -65,36 +66,33 @@ var check = exports.check = function check ( data ) {
 }
 
 
-var resolve = exports.resolve = function resolve ( socket, server, callback ) {
-  var port = server.port, host = server.host;
-  var auth = server.auth || { username: 'vs-stun' }
-
-  var onError = function onError ( error ) { done(error); }
-  var onValue = function onValue ( value ) {
-    var packet = new Packet.parse(value, auth);
-
-    if ( packet instanceof Error ) done(packet);
-    else done(null, packet.attribute.mappedAddress);
-  }
+var connect = exports.connect = function connect ( server, callback, retransmission ) {
+  var server = server || { }
+  var socket = dgram.createSocket('udp4');
 
   var done = function done ( error, value ) {
-    socket.removeListener('error', onError);
-    socket.removeListener('message', onValue);
+    if ( error ) {
+      socket.close();
 
-    if ( callback ) callback(error, value);
+      callback(error);
+    }
+    else {
+      socket.stun = value;
+
+      callback(null, socket);
+    }
   }
 
-  var packet = create.bindingRequest(auth);
+  socket.on('listening', function ( ) {
+    client.resolve(socket, server, done, retransmission);
+  });
 
-  packet.append.software(packet.auth.username);
-  packet.append.username(packet.auth.username);
-  packet.append.messageIntegrity();
-  packet.append.fingerprint();
+  socket.bind();
+}
 
-  socket.on('error', onError);
-  socket.on('message', onValue);
 
-  socket.send(packet.raw, 0, packet.raw.length, port, host);
+var resolve = exports.resolve = function resolve ( socket, server, callback, retransmission ) {
+  client.resolve(socket, server, callback, retransmission);
 }
 
 var respond = exports.respond = function respond ( socket, data, callback ) {
@@ -110,14 +108,18 @@ if ( require.main === module && process.argv[2] == 'test' ) {
 
   exec('node lib/Packet.js', log);
 
-  var socket = udp.createSocket('udp4'); socket.bind();
-  var server = { port: 19302, host: '173.194.79.127' }
-
+  var socket, server = { host: 'stun.l.google.com', port: 19302 }
+  
   var callback = function callback ( error, value ) {
-    console.log(error || value); socket.close();
+    if ( !error ) {
+      socket = value;
+      
+      console.log(socket.stun);
+      
+      socket.close();
+    }
+    else console.log('Something went wrong: ' + error);
   }
-
-  socket.on('listening', function ( ) {
-    resolve(socket, server, callback);
-  });
+  
+  connect(server, callback);
 }
