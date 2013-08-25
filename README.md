@@ -20,28 +20,20 @@ Create a datagram socket, discover its host, port, and topology:
 ```javascript
 var stun = require('vs-stun');
 
-var socket, option = {
-  primary:        { host: 'stun1.l.google.com', port: 19302 },
-  secondary:      { host: 'stun2.l.google.com', port: 19302 },
-  retransmission: { count: 7, timeout: 500 }
-}
+var socket, server = { host: 'stun.l.google.com', port: 19302 }
 
 var callback = function callback ( error, value ) {
   if ( !error ) {
     socket = value;
-    
-    var host = socket.stun.host;
-    var port = socket.stun.port;
-    var type = socket.stun.type;
-    
-    console.log('STUN: ' + type + ' => ' + host + ':' + port);
-    
+
+    console.log(socket.stun);
+
     socket.close();
   }
   else console.log('Something went wrong: ' + error);
 }
 
-stun.connect(option, callback);
+stun.connect(server, callback);
 ```
 
 Or discover host, port, and topology of an existing socket:
@@ -51,24 +43,18 @@ var stun = require('vs-stun');
 
 // socket is created and opened here...
 
-var option = {
-  primary:        { host: 'stun1.l.google.com', port: 19302 },
-  secondary:      { host: 'stun2.l.google.com', port: 19302 },
-  retransmission: { count: 7, timeout: 500 }
-}
+var server = { host: 'stun.l.google.com', port: 19302 }
 
 var callback = function callback ( error, value ) {
   if ( !error ) {
-    var host = value.host;
-    var port = value.port;
-    var type = value.type;
-    
-    console.log('STUN: ' + type + ' => ' + host + ':' + port);
+    console.log(value);
+
+    socket.close();
   }
   else console.log('Something went wrong: ' + error);
 }
 
-stun.resolve(socket, option, callback);
+stun.resolve(socket, server, callback);
 ```
 
 
