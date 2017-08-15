@@ -3,6 +3,14 @@ vs-stun
 
 STUN protocol implementation in NodeJS
 
+#fix chrome stun attribute parse error 0xC057    
+
+https://www.ietf.org/mail-archive/web/ice/current/msg00247.html    
+
+https://tools.ietf.org/html/draft-thatcher-ice-network-cost-00   
+
+
+-------
 
 Installation
 ------------
